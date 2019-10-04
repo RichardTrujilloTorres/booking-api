@@ -1,0 +1,16 @@
+language: php
+
+php: 7.1
+
+before_script:
+  - cp .env.travis .env.test
+  - sudo service mysql start
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS booking_api_test;'
+  - travis_retry composer self-update
+  - travis_retry composer update --no-scripts --no-interaction
+  - php bin/console doctrine:migration:migrate --env=test --no-interaction
+  - php bin/console doctrine:fixtures:load --env=test --no-interaction
+
+services: mysql
+
+script: ./bin/phpunit
