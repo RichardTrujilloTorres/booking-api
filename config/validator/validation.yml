@@ -1,0 +1,11 @@
+# config/validation/validator.yml
+App\Entity\Booking:
+  properties:
+    start_time:
+      - NotBlank: ~
+      - DateTime: ~
+    end_time:
+      - NotBlank: ~
+      - DateTime: ~
+    table_number:
+      - NotBlank: ~
