@@ -6,7 +6,6 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\BookingRepository")
  */
 class Booking
@@ -19,19 +18,14 @@ class Booking
     private $id;
 
     /**
-     * @ORM\Column(type="time")
+     * @ORM\Column(type="datetime")
      */
     private $start_time;
 
     /**
-     * @ORM\Column(type="time")
-     */
-    private $end_time;
-
-    /**
      * @ORM\Column(type="datetime")
      */
-    private $date;
+    private $end_time;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -63,18 +57,6 @@ class Booking
     public function setEndTime(\DateTimeInterface $end_time): self
     {
         $this->end_time = $end_time;
-
-        return $this;
-    }
-
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(\DateTimeInterface $date): self
-    {
-        $this->date = $date;
 
         return $this;
     }
