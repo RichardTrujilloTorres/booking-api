@@ -1,0 +1,30 @@
+resources:
+  App\Entity\Booking:
+    shortName: 'Booking'                   # optional
+    description: 'Represents a basic booking'
+    iri: 'http://schema.org/Booking'       # optional
+    attributes:                          # optional
+      pagination_items_per_page: 20    # optional
+    properties:
+      start_time:
+        - DateTime: ~
+      end_time:
+        - DateTime: ~
+      table_number:
+        - NotBlank: ~
+        - Positive: ~
+
+    collectionOperations:
+      get: ~
+      store:
+        method: POST
+        path: /bookings.{_format}
+        controller: App\Controller\StoreBookingController
+
+    itemOperations:
+      get: ~
+      moveBooking:
+        method: POST
+        path: /bookings/{id}/move.{_format}
+        controller: App\Controller\MoveBookingController
+
